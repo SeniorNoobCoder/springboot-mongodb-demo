@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <form id="batchUploadRiskFileForm" action="" method="post" enctype="multipart/form-data">
+        <label for="content">规则文件:</label> <input type="file" name="updateFiles" multiple="">
+    </form>
+</body>
+<script type="text/javascript">
+function batchUpdateRiskRule(){
+
+    var formData = new FormData($("#batchUpdateRiskRuleForm")[0]);
+    $.ajax({
+    url : '../riskRule/batchUpdateRiskRule.htm',
+    type : 'POST',
+    dataType : 'json', // 接受数据格式
+    data : formData,
+    async : false,
+    cache : false,
+    contentType : false,
+    processData : false,
+    success : function(data) {
+    if (data.status >= 0) {
+    window.location.href = window.location.href;
+    } else {
+    alert(data.message);
+    }
+    },
+    error : function(data) {
+    alert(data);
+    }
+    });
+    } 
+</script>
+</html>
